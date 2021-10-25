@@ -1,0 +1,32 @@
+<h3 class="header" style="text-align: center; padding-top: 50px; font-weight: bolder;">Airfare</h3>
+
+<br>
+<!-- <button (click)="onAdd()" style="margin-bottom: 20px;" class="btn btn-info float-right">Add</button> -->
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Airfare Id</th>
+      <th>fare</th>
+      <th>Source</th>
+      <th>Destination</th>
+      <th>Route Code</th>
+      <!-- <th style="width: 140px;">Actions</th> -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let airfare of airfares; let i = index">
+      <td>{{i + 1}}</td>
+      <td>{{airfare.airfare_id}}</td>
+      <td>{{airfare.fare}}</td>
+      <td>{{airfare.source}}</td>
+      <td>{{airfare.destination}}</td>
+      <td>{{airfare.route_code}}</td>
+      <!-- <td>
+        <button (click)="onEdit(airfare)" class="btn btn-sm btn-warning">Edit</button>
+        <button (click)="onDelete(airfare)" class="btn btn-sm btn-danger" style="margin-left: 10px;">Delete</button>
+      </td> -->
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,103 @@
+
+<div class="image">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="sidebar" style="margin-top: 45px;">
+             
+                <a style="color: mediumspringgreen;">Welcome {{uname}}</a>
+                <a routerLink="#home">Home</a>
+                <a routerLink="#news">News</a>
+                <a routerLink="#contact">Contact</a>
+                <a routerLink="#about">About</a>
+                <a routerLink="/base/user/show-transaction">Show Transaction</a>
+               <a routerLink="/base/user/add-address" >Add Address</a>
+               <a routerLink="/base/user/user-details">User Details</a>
+
+              </div>       
+        </div>
+
+        
+        <div class="col-sm-3">
+          
+            <!-- <div class="modal-body">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>RouteId</th>
+                      <th>Source</th>
+                      <th>Destination</th>
+                    </tr>
+                  </thead>
+                
+                  <tbody>
+                    <tr *ngFor="let routess of routers; let i = index">
+                      <td>{{i + 1}}</td>
+                      <td>{{routess.rt_id}}</td>
+                      <td>{{routess.source}}</td>
+                      <td>{{routess.destination}}</td>
+                      <td>
+                        <button (click)="onSubmit(routess.rt_id)" class="btn btn-sm btn-info">Select</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div> -->
+            <div class="col-md-12">
+                <div class="form">
+                  <div class="form-group">
+                    <label for="">Source RT</label>
+                    <select (change)="onSubmit()" [(ngModel)]="route_string" class="form-control" style="border-color: black; border-radius: 10px;" >
+                      <option value="0">All</option>
+                      <option [value]="route1.source"  *ngFor="let route1 of routers">{{route1.source}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Destination RT</label>
+                    <select (change)="onSubmit()" [(ngModel)]="route_string1" class="form-control" style="border-color: black; border-radius: 10px;" >
+                      <option value="0">All</option>
+                      <option [value]="route2.destination"  *ngFor="let route2 of routers">{{route2.destination}}</option>
+                    </select>
+                  </div>
+                  <!-- <button (click)="onSubmit()" class="btn btn-sm btn-warning">Edit</button> -->
+                </div>
+              </div>
+    </div>
+
+    <!-- Airline Flight schedule schedule-->
+      <div class="modal-body" style="margin-left: 60px;">
+                <table class="table table-striped table-hover" style="border-color: black; border-radius: 10px;">
+                  <thead>
+                    <tr style="color: black;">
+                      <th>No</th>
+                      <th>Flight Id</th>
+                      <th>Flight Date</th>
+                      <th>Departure Time</th>
+                      <th>Arrival Time</th>
+                      <th>Capacity</th>
+                      <th>Fare</th>
+                      <th>Select Seat</th>
+                    </tr>
+                  </thead>
+                
+                  <tbody>
+                    <tr *ngFor="let flights of flightSchedule; let i = index" style="color: black;">
+                      <td>{{i + 1}}</td>
+                      <td>{{flights.fls_id}}</td>
+                      <td>{{flights.flightDate}}</td>
+                      <td>{{flights.departureTime}}</td>
+                      <td>{{flights.arrivalTime}}</td>
+                      <td>{{flights.aircraft.capacity}}</td>
+                      <td>{{flights.airfare.fare}}</td>
+                      
+                      <td>
+                        <button (click)="onBook(flights.aircraft.ac_id,flights.fls_id,i,flights.airfare.fare,flights.arrivalTime,flights.departureTime)" class="btn btn-sm btn-info" style="border-color: black; border-radius: 6px;">Select Seat</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+       </div> 
+</div>
+
+</div>

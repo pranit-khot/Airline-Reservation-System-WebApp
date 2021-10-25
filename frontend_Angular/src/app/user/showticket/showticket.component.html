@@ -1,0 +1,35 @@
+
+
+<div class="contaienr" style="margin-left: 300px;">
+
+    <div class="row" class="first">
+
+        <div class="col-sm-12" style="margin-left: 90px;">
+            <h4 style="color: black; font-weight: bold;">Your Ticket Is Generated Successfully!!!!</h4>
+        </div>
+        <br>
+        <h4  style="margin-left: 90px; color: black; font-weight: bold;">Customer Details</h4>
+        <br>
+        <div class="col-sm-12" style="margin-left: 90px;">
+        <h5 style="color: black;"> Customer Name : {{username}} </h5>
+        </div>
+        <br>
+        <div class="col-sm-12">
+            <h4  style="margin-left: 76px; color: black; font-weight: bold;">Flight Details</h4>
+            <br>
+            <div *ngFor="let flights of flightpos ; let i = index" style="margin-left: 90px; color: black;">
+               <h5>Arrival Time     : {{arrt}} </h5>
+               <h5>Departure Time   : {{deptt}} </h5>
+               <h5>Seat no          : {{seatno}}</h5>
+               <h5>Source        -->  {{source}}</h5>
+               <h5>Destination   -->  {{destination}}</h5>
+            </div>
+        </div>
+    
+        <h4  style="margin-left: 85px; color: black; font-weight: bold;">Fare Details</h4>
+        <div class="col-sm-12" style="margin-left: 90px; color: black;">
+            <h5>Fare ={{fare}}</h5>
+        </div>
+        
+    </div>
+</div>

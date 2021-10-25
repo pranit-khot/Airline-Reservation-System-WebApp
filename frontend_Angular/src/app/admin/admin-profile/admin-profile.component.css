@@ -1,0 +1,43 @@
+div.gallery {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+    height: 180px;
+    border-radius: 10px; 
+    border: darkslateblue; 
+    box-sizing: border-box; 
+    box-shadow: darkslategray;
+    border-color: black;
+    border-style: solid;
+  }
+
+  div.gallery:hover {
+  background-color: cornsilk;  
+  transform: scale(1.1);
+  }
+  
+  div.gallery img {
+    width: 100%;
+    height: auto;
+  }
+  
+  div.desc {
+    padding: 15px;
+    text-align: center;
+  }
+
+  div.margin{
+    padding-top: 50px;
+  }
+  .gallery{
+    background-color: lightcyan;
+
+  }
+
+  .image{
+    background-image: url('../../../assets/images/Screenshot.png');
+    /* background-repeat: no-repeat; */
+    height: 600px;
+  }
+ 

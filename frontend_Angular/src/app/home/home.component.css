@@ -1,0 +1,21 @@
+.cardhome3{
+    /* float: left; */
+    padding-left:20px; 
+    padding-top: 0px; 
+    border-radius: 25px; 
+    height: 850px;
+    width: 100%;
+    background-color:whitesmoke !important;
+}
+
+.cardhome4{
+    /* float: left; */
+ margin-top:0px;   
+    /* padding-top: 0px; 
+    border-radius: 25px; 
+    height: 500px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 600px;
+    background-color:yellow !important; */
+}

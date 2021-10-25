@@ -1,0 +1,42 @@
+
+<div class="modal-header">
+    <h3>Edit Schedule</h3>
+  </div>
+  
+  <div class="modal-body">
+    <div class="form">
+      <div class="form-group">
+        <label for="">fls_id</label>
+        <textarea [(ngModel)]="fls_id" type="number" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="">arrival_time</label>
+        <textarea [(ngModel)]="arrival_time" type="text" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="">departure_time</label>
+        <textarea [(ngModel)]="departure_time" type="text" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="">flight_date</label>
+        <textarea [(ngModel)]="flight_date" type="text" class="form-control"></textarea>
+      </div>
+      <!-- <div class="form-group">
+        <label for="">ac_id</label>
+        <textarea [(ngModel)]="ac_id" type="number" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="">airfare_id</label>
+        <textarea [(ngModel)]="airfare_id" type="number" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="">rt_id</label>
+        <textarea [(ngModel)]="rt_id" type="number" class="form-control"></textarea>
+      </div> -->
+    </div>
+  </div>
+  
+  <div class="modal-footer">
+    <button (click)="onUpdate()" class="btn btn-success">Update</button>
+    <button (click)="onCancel()" class="btn btn-danger float-right">Cancel</button>
+  </div>

@@ -1,0 +1,26 @@
+
+<div style="border: black;">
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div class="form singin">
+      <div class="form-group">
+        <label for="">Customer Name</label>
+        <input [(ngModel)]="username" disabled type="text" class="form-control" style="border-radius: 8px;border-color: black;">
+      </div>
+      <div class="form-group">
+        <label for="">Account Number</label>
+        <input [(ngModel)]="acno" type="text" class="form-control" style="border-radius: 8px;border-color: black;">
+      </div>
+      <div class="form-group">
+        <label for="">CVV</label>
+        <input [(ngModel)]="cvv" type="password" class="form-control" style="border-radius: 8px;border-color: black;">
+      </div>
+      <div class="form-group">
+        <button (click)="verifyBankDetails()" class="btn btn-info">PayNow</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+</div>

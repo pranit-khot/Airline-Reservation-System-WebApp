@@ -1,0 +1,30 @@
+<h3 class="header" style="text-align: center; padding-top: 50px; font-weight: bolder;">Transactions</h3>
+
+<br>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Ts Id</th>
+      <th>Booking Date</th>
+      <th>Departure Date</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Phone</th>
+      <th>Route Code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let transaction of transactions; let i = index">
+      <td>{{i + 1}}</td>
+      <td>{{transaction.ts_id}}</td>
+      <td>{{transaction.booking_date}}</td>
+      <td>{{transaction.departure_date}}</td>
+      <td>{{transaction.first_name}}</td>
+      <td>{{transaction.last_name}}</td>
+      <td>{{transaction.phone}}</td>
+      <td>{{transaction.route_code}}</td>
+    </tr>
+  </tbody>
+</table>

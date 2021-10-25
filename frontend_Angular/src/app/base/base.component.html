@@ -1,0 +1,36 @@
+
+<div>
+
+<div class="firstdiv">
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bold;">Airline Reservation System</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          
+          
+          
+        </ul>
+        <div class="my-2 my-lg-0">
+          <!-- <button (click)="onLogout()" class="btn btn-outline-info my-2 my-sm-0">Logout</button> -->
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-info" id="dropdownBasic1" ngbDropdownToggle>User</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      
+              <a routerLink="/base/user/user-profile" ngbDropdownItem>Profile</a>
+              <!-- <a routerLink="/home/user/user-login" ngbDropdownItem>Login</a> -->
+              <!-- <a routerLink="/home/user/user-register" ngbDropdownItem>Register User</a> -->
+              <button (click)="onLogout()" class="btn btn-outline-success my-2 my-sm-0">Logout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <router-outlet></router-outlet> 
+</div>
+
+</div>

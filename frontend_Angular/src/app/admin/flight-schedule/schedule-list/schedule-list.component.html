@@ -1,0 +1,41 @@
+<h3 class="header" style="text-align: center; padding-top: 50px; font-weight: bolder;">Flight Schedules</h3>
+
+<br>
+<button (click)="onAdd()" style="margin-bottom: 20px;" class="btn btn-info float-right">Add</button>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Fls Id</th>
+      <th>Arrival Time</th>
+      <th>Departure Time</th>
+      <th>Flight Date</th>
+      <th>Capacity</th>
+      <th>Fare</th>
+      <th>source</th>
+      <th>destination</th>
+      <th>Route Code</th>
+
+      <th style="width: 140px;">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let schedule of schedules; let i = index">
+      <td>{{i + 1}}</td>
+      <td>{{schedule.fls_id}}</td>
+      <td>{{schedule.arrival_time}}</td>
+      <td>{{schedule.departure_time}}</td>
+      <td>{{schedule.flight_date}}</td>
+      <td>{{schedule.capacity}}</td>
+      <td>{{schedule.fare}}</td>
+      <td>{{schedule.source}}</td>
+      <td>{{schedule.destination}}</td>
+      <td>{{schedule.route_code}}</td>
+      <td>
+        <button (click)="onEdit(schedule)" class="btn btn-sm btn-warning">Edit</button>
+        <button (click)="onDelete(schedule)" class="btn btn-sm btn-danger" style="margin-left: 10px;">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

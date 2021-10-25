@@ -1,0 +1,30 @@
+
+
+<h3 class="header" style="margin-left: 45%; font-family: 'Courier New', Courier, monospace;">Address</h3>
+
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div class="form singin">
+      <div class="form-group">
+        <label for="">City</label>
+        <input [(ngModel)]="street" type="text" class="form-control" style="border-radius: 8px; border-color: black;">
+      </div>
+      <div class="form-group">
+       <label for="">State</label>
+        <input [(ngModel)]="state_name" type="text" class="form-control" style="border-radius: 8px; border-color: black;">
+      </div> 
+
+       <div class="form-group">
+        <label for="">Country</label>
+        <input [(ngModel)]="country" type="text" class="form-control" style="border-radius: 8px; border-color: black">
+      </div>
+    
+      <div class="form-group">
+        <button (click)="onAddaddress()" class="btn btn-info" style="margin-left: 30%;">Add Address</button>
+        <!-- <a routerLink="/base/user/user-register" class="btn btn-info float-right">Signup</a> -->
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+</div>

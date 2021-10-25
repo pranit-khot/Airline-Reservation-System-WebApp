@@ -1,0 +1,28 @@
+
+<div class="container">
+       <div class="modal-body">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Right Side</th>
+                      <th>Left  Side</th>
+                    </tr>
+                  </thead>   
+                  <tbody>
+                    <tr *ngFor="let seat of seats; let i = index">
+                      
+                     <td>
+                        <button (click)="onSubmit(seat.seatId)" *ngIf='seat.status === "true" ;else book' disabled class="btn btn-sm btn-success">{{seat.seatno}}</button>
+                      </td>
+                      <ng-template #book>
+                        <button (click)="onSubmit(seat.seatId)"  class="btn btn-sm btn-danger">{{seat.seatno}}</button>
+                      </ng-template>
+                    
+                    </tr>
+                    <div style="padding-left:80px"> 
+                       <button (click)="BookSeat()"class="btn btn-sm btn-danger" style="float: right;">Book Seat</button>
+                    </div>
+                </tbody>
+                </table>
+              </div>
+</div>
