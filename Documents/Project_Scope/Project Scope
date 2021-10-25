@@ -1,0 +1,12 @@
+			       Project Scope	
+		
+	“AIRLINE RESERVATION SYSTEM” web application provides options for viewing different flights available with different time for a particular date and provides customers with the facility to book a ticket, modify or cancel a particular reservation.
+
+	The system allows the airline passenger to search for flights that are available between the two travel cities, namely the “Departure city” and “Arrival city” for a particular departure and arrival dates. 
+	
+	After search the system displays list of available flights with details such as flight no, name, price and number of seats available etc. and allows customer to choose a particular flight. Then the system checks for the availability of seats on the flight. If the seats are available then the system allows the passenger to book a seat. Otherwise passenger can take another flight.After successful reservation passenger will get ticket details like name of passenger,no. of seats booked and total fare via e-mail.
+
+	Another part of sytem is the "Admin User" where admin can manage flight scheduling, availability of seats,adding and removing different routes and other functionalities.
+
+
+

@@ -1,0 +1,12 @@
+flight schedule
+insert into flight_schedule values(default,'12:15','02:33','2021-01-12',1,1,1);
+
+airfare
+insert into airfare values(default,5000,1);
+
+route
+insert into route values(default,'Delhi','MUM-DEL','Mumbai');
+
+aircraft
+insert into aircraft values(default,20);
+

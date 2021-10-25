@@ -1,0 +1,328 @@
+CREATE TABLE AirCrafts(
+AcID INT Primary Key,
+Capacity INT NOT NULL
+);
+
+
+INSERT INTO AirCrafts
+(AcID, Capacity)
+VALUES
+(1, 75);
+
+INSERT INTO AirCrafts
+(AcID, Capacity)
+VALUES
+(2, 80);
+
+
+
+
+CREATE TABLE Route(
+RtID INT,
+Airport Varchar(32) NOT NULL,
+Destination Varchar(32) NOT NULL,
+RouteCode Varchar(16) NOT NULL UNIQUE,
+PRIMARY KEY (RtID)
+);
+
+INSERT INTO Route
+Values (1, "Kathmandu", "Pokhara", "KTM-PKR");
+
+INSERT INTO Route
+Values (2, "Mumbai", "Delhi", "MUM-DEL");
+
+
+CREATE TABLE AirFare(
+AfID INT,
+RouteId INT,
+Fare INT,
+PRIMARY KEY (AfID),
+CONSTRAINT fk_Route FOREIGN KEY (RouteId) REFERENCES Route(RtID)
+);
+
+INSERT INTO AirFare
+VALUES
+(1, 1, 3750);
+
+INSERT INTO AirFare
+VALUES
+(2, 2, 5050);
+
+
+
+CREATE TABLE Flight_Schedule(
+FlsID INT,
+FlightDate DATETIME,
+Departure TIME,
+Arrival TIME,
+AirCraftId INT,
+RouteId INT,
+AirFareId INT,
+PRIMARY KEY (FlsID),
+CONSTRAINT fk_AirFare FOREIGN KEY (AirFareId) REFERENCES AirFare(AfID),
+CONSTRAINT fk_AirCraft FOREIGN KEY (AirCraftId) REFERENCES AirCrafts(AcID),
+CONSTRAINT fk_Routes FOREIGN KEY (RouteId) REFERENCES Route(RtID)
+);
+
+
+
+INSERT INTO Flight_Schedule
+VALUES
+(1, '2021-01-12', '09:34:00', '10:34:00', 1, 1, 1);
+
+INSERT INTO Flight_Schedule
+VALUES
+(2, '2021-01-12', '11:34:00', '12:34:00', 1, 1, 1);
+
+INSERT INTO Flight_Schedule
+VALUES
+(3, '2021-01-12', '11:34:00', '12:34:00', 1, 1, 2);
+
+
+ 
+ 
+ 
+ 
+ select c.Capacity from Flight_Schedule f inner join AirCrafts c on f.AirCraft = c.AcID where f.FlightDate='2021-01-12';
+ 
+select c.Capacity, f.FlightDate, f.Departure, f.Arrival from Flight_Schedule f inner join AirCrafts c on f.AirCraft = c.AcID where f.FlightDate='2021-01-12';
+ 
+ select r.Airport, r.Destination, c.Capacity, f.FlightDate, f.Departure, a.AfID, f.Arrival from Flight_Schedule f inner join AirCrafts c on f.AirCraft = c.AcID inner join Route r on r.RtID = f.RouteId inner join AirFare a on f.NetFare = a.AfID where f.FlightDate='2021-01-12';
+ 
+ 
+ select r.Airport, r.Destination, c.Capacity, f.FlightDate, f.Departure, a.AfID, f.Arrival from Flight_Schedule f inner join AirCrafts c on f.AirCraft = c.AcID inner join Route r on r.RtID = f.RouteId inner join AirFare a on f.NetFare = a.AfID where f.FlightDate='2021-01-12' and r.RtId = 1;
+ 
+ select r.Airport, r.Destination, c.Capacity, f.FlightDate, f.Departure, a.AfID, f.Arrival from Flight_Schedule f inner join AirCrafts c on f.AirCraft = c.AcID inner join Route r on r.RtID = f.RouteId inner join AirFare a on f.NetFare = a.AfID where f.FlightDate='2021-01-12' and (select RtID from Route where Airport='Kathmandu' and Destination='Pokhara');
+ 
+select RtID from Route where Airport='Mumbai' and Destination='Delhi';
+ 
+ ############
+ 
+ select r.Airport, r.Destination, c.Capacity, f.FlightDate, f.Departure, a.AfID, f.Arrival from Flight_Schedule f inner join AirCrafts c on f.AirCraftId = c.AcID inner join Route r on r.RtID = f.RouteId inner join AirFare a on f.AirFareId = a.AfID where f.FlightDate='2021-01-12' and r.RtID = (select RtID from Route where Airport='Mumbai' and Destination='Delhi');
+ 
+  select r.Airport, r.Destination, c.Capacity, f.FlightDate, f.Departure, a.AfID, a.Fare, f.Arrival from Flight_Schedule f inner join AirCrafts c on f.AirCraftId = c.AcID inner join Route r on r.RtID = f.RouteId inner join AirFare a on f.AirFareId = a.AfID where f.FlightDate='2021-01-12' and r.RtID = (select RtID from Route where Airport='Kathmandu' and Destination='Pokhara');
+########## 
+ 
+ 
+ 
+ 
+select r.Airport, r.Destination, c.Capacity, f.FlightDate, f.Departure, f.Arrival from Flight_Schedule f inner join AirCrafts c on f.AirCraft = c.AcID inner join Route r on r.RtID = f.RouteId;
+
+ 
+ select c.Capacity, f.FlightDate, f.Departure, f.Arrival from Flight_Schedule f inner join AirCrafts c on f.AirCraft = c.AcID;
+
+CREATE TABLE Transactions(
+TsID INT PRIMARY KEY,
+BookingDate DATETIME,
+DepartureDate DATETIME,
+UserId INT,
+FlightId INT,
+CONSTRAINT fk_User FOREIGN KEY (UserId) REFERENCES User(PsID),
+CONSTRAINT fk_Flight FOREIGN KEY (FlightId) REFERENCES Flight_Schedule(FlsID)
+);
+ 
+ 
+insert into Transactions values (1, '2021-01-08', '2021-01-12', 1, 1); 
+ 
+
+ select u.FirstName, u.Email, t.BookingDate, t.DepartureDate from Transactions t inner join User u on t.UserId = u.PsId;
+
+select u.FirstName, u.Email, t.BookingDate, t.DepartureDate, r.Airport, r.Destination from Transactions t inner join User u on t.UserId = u.PsId inner join Flight_Schedule f on f.FlsId = t.FlightId inner join Route r on r.RtId = f.RouteId;
+
+select u.FirstName, u.Email, t.BookingDate, t.DepartureDate, r.Airport, r.Destination, a.Fare from Transactions t inner join User u on t.UserId = u.PsId inner join Flight_Schedule f on f.FlsId = t.FlightId inner join Route r on r.RtId = f.RouteId inner join AirFare a on a.AfId = f.AirFareId;
+
+CREATE TABLE User(
+PsID INT PRIMARY KEY,
+FirstName Varchar (32) NOT NULL,
+LastName Varchar (32) NOT NULL,
+Email Varchar (50) NOT NULL,
+Password Varchar (100) NOT NULL,
+Passport_no Varchar (20),
+Mobile Varchar (20)
+);
+
+insert into User values (1, 'Tejas', 'Kadam', 'abc@xyz.com', 'test', 's6das6d', 'xx5A4x5');
+
+CREATE TABLE Address(
+CnID INT PRIMARY KEY,
+Street Varchar (64),
+State INT NOT NULL,
+UserId INT NOT NULL,
+CONSTRAINT fk_Userr FOREIGN KEY (UserId) REFERENCES User(PsId),
+CONSTRAINT fk_State FOREIGN KEY (State) REFERENCES State(StID)
+);
+ 
+ 
+CREATE TABLE State(
+StID INT,
+StateName Varchar (32),
+Country Varchar(25),
+PRIMARY KEY (StID)
+);
+ 
+
+CREATE TABLE Admin(
+AdminID INT PRIMARY KEY,
+Name Varchar (32) NOT NULL,
+Email Varchar (50) NOT NULL,
+Password Varchar (100) NOT NULL
+);
+
+ 
+ 
+ 
+ #########################################################################
+ 
+ 
+ 
+ 
+INSERT INTO flight_schedule
+VALUES
+(5, '09:34:00', '10:34:00', '2021-01-11', 1, 8, 1);
+
+INSERT INTO flight_schedule
+VALUES
+(6, '09:34:00', '10:34:00', '2021-01-11', 1, 9, 2);
+
+INSERT INTO flight_schedule
+VALUES
+(7, '09:34:00', '10:34:00', '2021-01-11', 1, 10, 3);
+INSERT INTO flight_schedule
+VALUES
+(1, '09:34:00', '10:34:00', '2021-01-11', 3, 14, 18);
+
+INSERT INTO flight_schedule
+VALUES
+(3, '09:34:00', '10:34:00', '2021-01-11', 1, 9, 2);
+
+insert into airfare values (8,932,1);
+insert into airfare values (9,932,2);
+insert into airfare values (10,93,3);
+insert into airfare values (11,982,4);
+
+| rt_id | destination | route_code | source
+
+insert into route values (1, 'XYZ', 'AB-XY', 'ABC');
+insert into route values (2, 'p', 'o-p', 'o');
+insert into route values (3, 'p', 'l-p', 'l');
+insert into route values (4, 'h', 'h-d', 'd');
+
+
+delete airfare, route from airfare a inner join route r on a.rt_id = r.rt_id where a.rt_id = 16;
+
+delete airfare, route from airfare inner join route on route.rt_id = airfare.rt_id where airfare.rt_id = 16;
+
+delete  route, airfare, flight_schedule from route inner join airfare on route.rt_id = airfare.rt_id inner join route on route.rt_id = flight_schedule.rt_id where airfare.rt_id = 16;
+
+delete airfare, flight_schedule from route inner join airfare on route.rt_id = airfare.rt_id inner join flight_schedule on flight_schedule.rt_id = route.rt_id where route.rt_id = 16;
+
+delete route, airfare, flight_schedule from route inner join airfare inner join flight_schedule where route.rt_id = airfare.rt_id and airfare.rt_id = flight_schedule.rt_id and where rt_id = 16;
+
+
+delete route, airfare, flight_schedule from route inner join airfare inner join flight_schedule where route.rt_id = airfare.rt_id and airfare.rt_id = flight_schedule.rt_id;
+
+delete route, airfare, flight_schedule from route inner join airfare inner join flight_schedule where route.rt_id = 16;
+
+
+
+route.rt_id = airfare.rt_id inner join  on flight_schedule.rt_id = route.rt_id route.rt_id = 16;
+
+
+delete airfare, flight_schedule from route inner join airfare on route.rt_id = airfare.rt_id inner join flight_schedule on flight_schedule.rt_id = route.rt_id where route.rt_id = 16;
+
+******
+delete airfare, flight_schedule from route inner join airfare on route.rt_id = airfare.rt_id inner join flight_schedule on flight_schedule.rt_id = route.rt_id where route.rt_id = 16;
+*******
+
+delete airfare, flight_schedule, route from airfare inner join flight_schedule on airfare.rt_id = flight_schedule.rt_id inner join route on route.rt_id = flight_schedule.rt_id where route.rt_id = 16;
+
+delete from flight_schedule where rt_id = 16;
+
+delete from airfare where rt_id = 16;
+
+delete from route where rt_id = 16;
+
+
+DELIMITER $$
+CREATE PROCEDURE sp_delete_route( IN rt_id INT)
+BEGIN
+delete airfare, flight_schedule from route inner join airfare on route.rt_id = airfare.rt_id inner join flight_schedule on flight_schedule.rt_id = route.rt_id where route.rt_id = rt_id;
+delete from route where rt_id = rt_id;
+END $$
+
+
+DELIMITER $$
+CREATE PROCEDURE sp_delete_route( IN id INT)
+BEGIN
+delete from flight_schedule where rt_id = id;
+delete from airfare where rt_id = id;
+delete from route where rt_id = id;
+END $$
+DELIMITER ;
+
+
+
+
+
+CALL sp_delete_route( 4 );
+
+DROP PROCEDURE sp_delete_route;
+
+
+
+insert into bank values (1, 654321, 10000000, 000, 1);
+insert into bank values (2, 654322, 10000000, 001, 2);
+insert into bank values (3, 654323, 10000000, 002, 3);
+insert into bank values (4, 654324, 10000000, 003, 4);
+insert into bank values (5, 654325, 10000000, 004, 5);
+insert into bank values (6, 654326, 10000000, 005, 6);
+insert into bank values (7, 654327, 10000000, 006, 7);
+insert into bank values (8, 654328, 10000000, 007, 8);
+insert into bank values (9, 654329, 10000000, 008, 9);
+insert into bank values (10, 654331, 10000000, 009, 10);
+insert into bank values (11, 654332, 10000000, 010, 11);
+insert into bank values (12, 65433, 10000000, 011, 12);
+insert into bank values (13, 654334, 10000000, 012, 13);
+insert into bank values (14, 654335, 10000000, 013, 14);
+insert into bank values (15, 654336, 10000000, 014, 15);
+insert into bank values (16, 654337, 10000000, 015, 16);
+insert into bank values (17, 654338, 10000000, 016, 17);
+insert into bank values (18, 654339, 10000000, 017, 18);
+insert into bank values (19, 654341, 10000000, 018, 19);
+insert into bank values (20, 654342, 10000000, 019, 20);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

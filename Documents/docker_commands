@@ -1,0 +1,13 @@
+docker image build . -t ars-frontend
+
+docker build -f Dockerfile -t ars-jbackend .
+
+//backend commands
+
+docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=sunbeam -e MYSQL_DATABASE=ars -e MYSQL_USER=sunbeam -e MYSQL_PASSWORD=sunbeam -d mysql:5.7
+docker run -p 7070:7070 --name ars-backend --link mysql-standalone:mysql -d ars-backend
+docker run -p 4000:4000 --name ars-nbackend --link mysql-standalone:mysql -d ars-nbackend
+docker container run -d -p 8088:80 ars-frontend
+
+ docker run -d -p 9090:3306 --name mysql-standalone -e MYSQL_ROOT_PASSWORD=sunbeam -e MYSQL_DATABASE=ars -e MYSQL_USER=sunbeam -e MYSQL_PASSWORD=sunbeam mysql:5.7
+
